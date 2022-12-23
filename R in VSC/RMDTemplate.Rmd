@@ -1,0 +1,74 @@
+---
+title: "Examen_Final"
+date: "`r Sys.Date()`"
+author: "Luis Adrian Gonzalez Arais"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+```{r load-packages, include=FALSE}
+
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+library(rmarkdown)
+library(knitr)
+
+```
+
+# Prueba 1
+
+## Tabla
+
+```{r}
+minutos <- 420:1160
+
+compA <- function(x) {
+  return(0.05 * x + 34)
+}
+
+compB <- function(x) {
+  return(0.04 * x + 40)
+}
+
+costoA <- compA(minutos)
+costoB <- compB(minutos)
+
+tabla <- data.frame(Minutos = minutos, Costo_A = costoA, Costo_B = costoB)
+tabla
+```
+
+
+- Con un promedio de 1160 minutos usados al mes la compañia B oferce una mejor tarifa
+- Con un promedio de 420 minutos usados al mes la compañia A oferce una mejor tarifa
+
+## Grafico
+
+```{r}
+fig <- plot_ly(
+  data = tabla,
+  x = ~minutos,
+  y = ~costoA,
+  name = "Compañia A",
+  type = "scatter"
+)
+
+fig <- fig %>% add_trace(
+  data = tabla,
+  x = ~minutos,
+  y = ~costoB,
+  name = "Compañia B",
+  type = "scatter"
+)
+
+fig
+```
+
+# prueba 2
+
+$$
+y=mx+b
+$$
+
+- utilizar preview para ver formula
